@@ -16,6 +16,9 @@ public class User {
     @Column(name = "nickname")
     private String nickname;
 
+    @Column(name = "school")
+    private String school;
+
     @Column(name = "grade")
     private int grade;
 
