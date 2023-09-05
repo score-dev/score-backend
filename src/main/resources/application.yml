@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/score?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/score
     username: root
-    password: 1234
+    password: 'sarah1106'
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -22,3 +22,11 @@ logging:
 server:
   address: localhost
   port: 8080
+
+#카카오 로그인 설정
+kakao:
+  client:
+    secret: hbiqdrg7rkV0h8X4ocPDHZGimHkgvnOn
+    id: 8b17f5e6120af126b2b89855e487272f
+  redirect:
+    url: http://localhost:8080/app/login/kakao
