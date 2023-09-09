@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OAuthAuthorization {
-    private String HOST;
+    private final String KAKAO_TOKEN_REQUEST_URL = "https://kauth.kakao.com/oauth/token";
+    private final String GOOGLE_TOKEN_REQUEST_URL = "https://oauth2.googleapis.com/token";
 
     public String getKakaoAccessToken(String code) throws IOException {
-        HOST = "https://kauth.kakao.com/oauth/token";
-        URL url = new URL(HOST);
+        URL url = new URL(KAKAO_TOKEN_REQUEST_URL);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             urlConnection.setRequestMethod("POST");
@@ -30,6 +30,9 @@ public class OAuthAuthorization {
             e.printStackTrace();
         }
         return parseToken(getResponse(urlConnection));
+    }
+
+    public void getGoogleAccessToken(String code) {
     }
 
 

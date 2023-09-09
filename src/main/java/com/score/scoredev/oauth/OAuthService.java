@@ -10,12 +10,13 @@ import java.net.URL;
 
 @Service
 public class OAuthService {
+    private final String KAKAO_USERINFO_REQUEST_URL = "https://kapi.kakao.com/v2/user/me";
+    private final String GOOGLE_USERINFO_REQUEST_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
 
-    private String reqURL;
+
 
     public String createKakaoUser(String token) throws IOException {
-            reqURL = "https://kapi.kakao.com/v2/user/me";
-            URL url = new URL(reqURL);
+            URL url = new URL(KAKAO_USERINFO_REQUEST_URL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setRequestMethod("POST");
