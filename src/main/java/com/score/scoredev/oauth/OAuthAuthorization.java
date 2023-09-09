@@ -11,30 +11,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OAuthAuthorization {
-    private final String KAKAO_TOKEN_REQUEST_URL = "https://kauth.kakao.com/oauth/token";
-    private final String GOOGLE_TOKEN_REQUEST_URL = "https://oauth2.googleapis.com/token";
+    private HttpURLConnection urlConnection;
 
-    public String getKakaoAccessToken(String code) throws IOException {
-        URL url = new URL(KAKAO_TOKEN_REQUEST_URL);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+    public String getKakaoAccessToken(String code) {
         try {
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);    // 데이터 기록 알려주기
-            Map<String, String> authInfo = new HashMap<>();
+            Map<String, String> authInfo = connectToClient(OAuthClient.KAKAO);
+
             authInfo.put("grant_type", "authorization_code");
             authInfo.put("client_id", "8b17f5e6120af126b2b89855e487272f");
             authInfo.put("redirect_uri", "http://localhost:8080/app/login/kakao");
             authInfo.put("code", code);
+
             buildRequest(authInfo, urlConnection);
+            return parseToken(getResponse(urlConnection));
         } catch (IOException e) {
             e.printStackTrace();
+            return e.getMessage();
         }
-        return parseToken(getResponse(urlConnection));
     }
 
-    public void getGoogleAccessToken(String code) {
+    public String getGoogleAccessToken(String code)  {
+        try {
+            Map<String, String> authInfo = connectToClient(OAuthClient.GOOGLE);
+            authInfo.put("client_id", "");
+            authInfo.put("redirect_uri", "");
+            authInfo.put("code", code);
+
+            buildRequest(authInfo, urlConnection);
+            return parseToken(getResponse(urlConnection));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 
+    private Map<String, String> connectToClient(OAuthClient client) throws IOException {
+        URL url = new URL(client.getAccessTokenReqUrl());
+        urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("POST");
+        urlConnection.setDoOutput(true);    // 데이터 기록 알려주기
+        return new HashMap<>();
+    }
 
     private void buildRequest(Map<String, String> authInfo, HttpURLConnection urlConnection) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
