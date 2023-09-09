@@ -41,15 +41,15 @@ public class OAuthController {
 
       BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
       String line = "";
-      String result = "";
+      StringBuilder result = new StringBuilder();
       while ((line = br.readLine()) != null){
-        result += line;
+        result.append(line);
       }
       System.out.println("result = " + result);
 
       // json parsing
       JSONParser parser = new JSONParser();
-      JSONObject elem = (JSONObject) parser.parse(result);
+      JSONObject elem = (JSONObject) parser.parse(result.toString());
 
       String access_token = elem.get("access_token").toString();
       String refresh_token = elem.get("refresh_token").toString();
