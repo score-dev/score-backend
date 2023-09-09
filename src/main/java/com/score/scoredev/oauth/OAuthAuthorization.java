@@ -54,7 +54,7 @@ public class OAuthAuthorization {
         bw.close();
     }
 
-    private String getResponse(HttpURLConnection urlConnection) throws IOException {
+    static String getResponse(HttpURLConnection urlConnection) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         String line = "";
         StringBuilder result = new StringBuilder();
