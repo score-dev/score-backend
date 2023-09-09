@@ -21,9 +21,9 @@ public class OAuthAuthorization {
             urlConnection.setRequestMethod("POST");
             urlConnection.setDoOutput(true);    // 데이터 기록 알려주기
             Map<String, String> authInfo = new HashMap<>();
-            authInfo.put("grant_type=", "authorization_code");
-            authInfo.put("&client_id=", "8b17f5e6120af126b2b89855e487272f");
-            authInfo.put("redirect_uri=", "http://localhost:8080/app/login/kakao");
+            authInfo.put("grant_type", "authorization_code");
+            authInfo.put("client_id", "8b17f5e6120af126b2b89855e487272f");
+            authInfo.put("redirect_uri", "http://localhost:8080/app/login/kakao");
             authInfo.put("code", code);
             buildRequest(authInfo, urlConnection);
         } catch (IOException e) {
