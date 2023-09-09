@@ -1,4 +1,4 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.oauth;
 
 
 import net.minidev.json.JSONObject;
