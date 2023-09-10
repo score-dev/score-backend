@@ -1,19 +1,44 @@
 package com.score.scoredev.oauth;
 
+import com.score.scoredev.dto.TokenDto;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.keygen.KeyGenerators;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.util.Base64;
 
 @Component
 @RequiredArgsConstructor
-public class JwtTokenProvider {
+public class JwtProvider {
     private final long ACCESS_TOKEN_VALID_MILISECOND = 1000L * 60 * 60;
     private final long REFRESH_TOKEN_VALID_MILISECOND = 1000L * 60 * 60 * 24 * 14;
 
-    private final String secretKey = KeyGenerators.string().generateKey();
+    @Value("${custom.jwt.secretKey}")
+    private String plainSecretKey;
 
-    public String createAccessToken(String userKey) {
-        Jwts.claims()
+    private SecretKey cachedSecretKey;
+
+
+    // plain key to secret key
+    private SecretKey _getSecretKey() {
+        String keyBase64Encoded = Base64.getEncoder().encodeToString(plainSecretKey.getBytes());
+        return Keys.hmacShaKeyFor(keyBase64Encoded.getBytes());
     }
+    public SecretKey getSecretKey() {
+        if (cachedSecretKey == null) {
+            cachedSecretKey = _getSecretKey();
+        }
+        return cachedSecretKey;
+    }
+
+    public TokenDto getNewToken(String userKey) {
+        return new TokenDto(createAccessToken(userKey), createRefreshToken(userKey));
+    }
+
 }
