@@ -52,4 +52,15 @@ public class JwtProvider {
                 .compact();
     }
 
+    private String createRefreshToken(String userKey) {
+        Claims claims = Jwts.claims().setSubject("RefreshToken");
+        Date presentDate = new Date();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(presentDate)
+                .setExpiration(new Date(presentDate.getTime() + REFRESH_TOKEN_VALID_MILISECOND))
+                .signWith(getSecretKey())
+                .compact();
+    }
+
 }
