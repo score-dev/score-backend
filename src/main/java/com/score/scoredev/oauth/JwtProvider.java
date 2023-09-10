@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Base64;
+import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +22,6 @@ public class JwtProvider {
 
     @Value("${custom.jwt.secretKey}")
     private String plainSecretKey;
-
     private SecretKey cachedSecretKey;
 
 
@@ -39,6 +39,17 @@ public class JwtProvider {
 
     public TokenDto getNewToken(String userKey) {
         return new TokenDto(createAccessToken(userKey), createRefreshToken(userKey));
+    }
+
+    private String createAccessToken(String userKey) {
+        Claims claims = Jwts.claims().setSubject(userKey);
+        Date presentDate = new Date();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(presentDate)
+                .setExpiration(new Date(presentDate.getTime() + ACCESS_TOKEN_VALID_MILISECOND))
+                .signWith(getSecretKey())
+                .compact();
     }
 
 }
