@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -41,6 +42,10 @@ public class JwtProvider {
         return new TokenDto(createAccessToken(userKey), createRefreshToken(userKey));
     }
 
+    public Jws<Claims> getClaimsFromJwt(String token) {
+        return Jwts.parserBuilder().setSigningKey(getSecretKey()).build().parseClaimsJws(token);
+    }
+
     private String createAccessToken(String userKey) {
         Claims claims = Jwts.claims().setSubject(userKey);
         Date presentDate = new Date();
@@ -62,5 +67,7 @@ public class JwtProvider {
                 .signWith(getSecretKey())
                 .compact();
     }
+
+
 
 }
