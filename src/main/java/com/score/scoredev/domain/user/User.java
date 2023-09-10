@@ -32,6 +32,9 @@ public class User {
     @Column(name = "auth_channel")
     private OAuthClient authChannel;
 
+    @Column(name = "userKey")
+    private String userKey;
+
     @Column(name = "refresh_token")
     private String refreshToken;
 }
