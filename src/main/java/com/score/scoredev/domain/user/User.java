@@ -1,5 +1,6 @@
 package com.score.scoredev.domain.user;
 
+import com.score.scoredev.oauth.OAuthClient;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -27,4 +28,10 @@ public class User {
 
     @Column(name = "join_date")
     private Date joinDate = new Date();
+
+    @Column(name = "auth_channel")
+    private OAuthClient authChannel;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
 }
