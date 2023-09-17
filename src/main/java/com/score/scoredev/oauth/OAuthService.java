@@ -1,6 +1,7 @@
 package com.score.scoredev.oauth;
 
 
+import com.score.scoredev.domain.user.UserService;
 import com.score.scoredev.dto.TokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.reactive.function.client.WebClientCustomizer;
@@ -19,8 +20,10 @@ import java.util.Map;
 public class OAuthService {
 
     private final JwtProvider jwtProvider;
+    private final UserService userService;
 
     public TokenDto loginWithToken(String userKey) {
+        userService.findUserByUserKey(userKey);
         return jwtProvider.getNewToken(userKey);
     }
 
