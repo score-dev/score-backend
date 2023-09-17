@@ -1,6 +1,5 @@
 package com.score.scoredev.domain.user;
 
-import com.score.scoredev.oauth.OAuthClient;
 import jakarta.persistence.*;
 import lombok.Getter;
 
