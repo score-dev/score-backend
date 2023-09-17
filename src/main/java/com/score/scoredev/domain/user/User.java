@@ -27,4 +27,10 @@ public class User {
 
     @Column(name = "join_date")
     private Date joinDate = new Date();
+
+    @Column(name = "userKey")
+    private String userKey;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
 }

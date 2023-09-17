@@ -19,6 +19,7 @@ public class NaverController {
 
         // redirect
         StringBuffer url = new StringBuffer();
-        url.append(NAVER_AUTH_URI + "")
+        url.append(NAVER_AUTH_URI + "/oauth2.0/authorize?");
+        url.append("client_id= " + g5wBSflvhBgCmuxIpgkFgit );
     }
 }

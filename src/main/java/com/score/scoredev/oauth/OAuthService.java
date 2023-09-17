@@ -1,28 +1,40 @@
 package com.score.scoredev.oauth;
 
 
+import com.score.scoredev.dto.TokenDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.reactive.function.client.WebClientCustomizer;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class OAuthService {
-    private final String KAKAO_USERINFO_REQUEST_URL = "https://kapi.kakao.com/v2/user/me";
-    private final String GOOGLE_USERINFO_REQUEST_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
+
+    private final JwtProvider jwtProvider;
+
+    public TokenDto loginWithToken(String userKey) {
+        return jwtProvider.getNewToken(userKey);
+    }
 
 
+    public void createKakaoUser(String token) {
+        // 회원가입시 새로운 유저 엔티티 생성
 
-    public String createKakaoUser(String token) throws IOException {
-            URL url = new URL(KAKAO_USERINFO_REQUEST_URL);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+    }
 
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
+    public void createGoogleUser(String token) {
+        // 회원가입시 새로운 유저 엔티티 생성
+    }
 
-            return OAuthAuthorization.getResponse(urlConnection);
+    public void createNaverUser(String token){
+
     }
 }
