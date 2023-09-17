@@ -1,2 +1,4 @@
-package com.score.scoredev.oauth;public enum OAuthClient {
+package com.score.scoredev.oauth;
+
+public enum OAuthClient {
 }
