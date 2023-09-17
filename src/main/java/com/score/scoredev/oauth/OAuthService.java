@@ -33,6 +33,6 @@ public class OAuthService {
     }
 
     public void createNaverUser(String token){
-
+        // 회원가입시 새로운 유저 엔티티 생성
     }
 }
