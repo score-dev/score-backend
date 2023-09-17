@@ -29,9 +29,6 @@ public class User {
     @Column(name = "join_date")
     private Date joinDate = new Date();
 
-    @Column(name = "auth_channel")
-    private OAuthClient authChannel;
-
     @Column(name = "userKey")
     private String userKey;
 

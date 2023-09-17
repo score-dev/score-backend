@@ -3,10 +3,8 @@ package com.score.scoredev.oauth;
 import com.score.scoredev.dto.TokenDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -67,7 +65,4 @@ public class JwtProvider {
                 .signWith(getSecretKey())
                 .compact();
     }
-
-
-
 }
