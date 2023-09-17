@@ -18,12 +18,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/auth/kakao", method = RequestMethod.GET)
-    public String getKakaoUserKey(@RequestParam("id"), String userKey) {
+    public String getKakaoUserKey(@RequestParam("id") String userKey) {
         return userKey;
     }
 
     @RequestMapping(value = "/user/auth/google", method = RequestMethod.GET)
-    public String getGoogleUserKey(@RequestParam("id"), String userKey) {
+    public String getGoogleUserKey(@RequestParam("id") String userKey) {
         return userKey;
     }
 
