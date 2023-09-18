@@ -3,7 +3,7 @@ package com.score.scoredev.domain.user;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum usingPurpose {
+public enum UsingPurpose {
     STRENGTH, // 기초체력
     EXERCISE_HABIT, // 운동 습관 형성
     HEALTH, // 헬스

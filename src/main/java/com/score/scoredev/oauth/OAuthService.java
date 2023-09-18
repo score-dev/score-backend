@@ -31,4 +31,8 @@ public class OAuthService {
     public void createGoogleUser(String token) {
         // 회원가입시 새로운 유저 엔티티 생성
     }
+
+    public void createNaverUser(String token){
+        // 회원가입시 새로운 유저 엔티티 생성
+    }
 }
