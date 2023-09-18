@@ -5,14 +5,17 @@ import lombok.Getter;
 
 import java.util.Date;
 
+@Getter
 @Entity
 @Table(name = "user")
-@Getter
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")   // 사용자 id
     private Long id;
+
+    @Column(name = "marketing")  // 마케팅 정보 수신 동의
+    private boolean marketing;
 
     @Column(name = "nickname") // 닉네임
     private String nickname;
@@ -27,9 +30,9 @@ public class User {
     private int grade;
 
     @Column(name = "ability_degree")  // 기초 체력
-    private int abilityDegree;
+    private AbilityDegree abilityDegree;
 
-    @Column(name = "using_purpose") // 사용 목적
+    @Column(name = "using_purpose", unique = false) // 사용 목적
     private UsingPurpose usingPurpose;
 
     @Column(name = "join_date")
