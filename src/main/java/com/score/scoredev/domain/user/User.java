@@ -17,10 +17,11 @@ public class User {
     @Column(name = "marketing")  // 마케팅 정보 수신 동의
     private boolean marketing;
 
-    @Column(name = "nickname") // 닉네임
+    @Column(name = "nickname", length = 20) // 닉네임
     private String nickname;
 
     @Column(name = "gender")  // 성별
+
     private String gender;
 
     @Column(name = "school")  // 재학 중인 학교
