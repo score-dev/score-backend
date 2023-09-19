@@ -21,8 +21,7 @@ public class User {
     private String nickname;
 
     @Column(name = "gender")  // 성별
-
-    private String gender;
+    private Gender gender;
 
     @Column(name = "school")  // 재학 중인 학교
     private String school;
