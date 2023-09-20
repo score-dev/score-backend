@@ -1,9 +1,9 @@
 package com.score.scoredev.dto;
 
-import com.score.scoredev.domain.user.AbilityDegree;
-import com.score.scoredev.domain.user.Gender;
-import com.score.scoredev.domain.user.User;
-import com.score.scoredev.domain.user.UsingPurpose;
+import com.score.scoredev.entity.user.AbilityDegree;
+import com.score.scoredev.entity.user.Gender;
+import com.score.scoredev.entity.user.User;
+import com.score.scoredev.entity.user.UsingPurpose;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

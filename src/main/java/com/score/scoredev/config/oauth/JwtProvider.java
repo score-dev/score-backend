@@ -1,7 +1,7 @@
-package com.score.scoredev.oauth;
+package com.score.scoredev.config.oauth;
 
-import com.score.scoredev.domain.user.User;
-import com.score.scoredev.domain.user.UserService;
+import com.score.scoredev.entity.user.User;
+import com.score.scoredev.service.UserService;
 import com.score.scoredev.dto.TokenDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

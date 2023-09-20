@@ -1,5 +1,7 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.service;
 
+import com.score.scoredev.entity.user.User;
+import com.score.scoredev.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

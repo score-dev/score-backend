@@ -1,5 +1,6 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.repository;
 
+import com.score.scoredev.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

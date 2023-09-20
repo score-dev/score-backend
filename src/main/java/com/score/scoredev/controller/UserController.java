@@ -1,7 +1,9 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.controller;
 
+import com.score.scoredev.service.UserService;
 import com.score.scoredev.dto.UserDto;
-import com.score.scoredev.oauth.JwtProvider;
+import com.score.scoredev.entity.user.User;
+import com.score.scoredev.config.oauth.JwtProvider;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

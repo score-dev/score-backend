@@ -1,4 +1,4 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.entity.user;
 
 public enum AbilityDegree {
     VERY_WEAK(0),

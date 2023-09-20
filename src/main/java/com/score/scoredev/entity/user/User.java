@@ -1,5 +1,8 @@
-package com.score.scoredev.domain.user;
+package com.score.scoredev.entity.user;
 
+import com.score.scoredev.entity.user.AbilityDegree;
+import com.score.scoredev.entity.user.Gender;
+import com.score.scoredev.entity.user.UsingPurpose;
 import jakarta.persistence.*;
 import lombok.*;
 
