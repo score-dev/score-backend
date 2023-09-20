@@ -1,5 +1,6 @@
 package com.score.scoredev.domain.user;
 
+import com.score.scoredev.dto.UserDto;
 import com.score.scoredev.oauth.JwtProvider;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class UserController {
     public ResponseEntity<Object> getGoogleUserKey(@RequestParam("id") String userKey, HttpServletResponse response) {
         HttpHeaders httpHeaders = checkWhetherNewOrNot(userKey, response);
         return new ResponseEntity<>(response, httpHeaders, HttpStatus.MOVED_PERMANENTLY);
+    }
+
+    @RequestMapping(value = "/user/score/join/#fin", method = RequestMethod.POST)
+    public void registerNewUser(@RequestBody UserDto userDto) {
+        User newUser = userDto.toEntity();
+        userService.saveUserInfo(newUser);
     }
 
     // 해당 회원 정보가 이미 db에 존재하는지 여부에 따라 메인 페이지 혹은 온보딩 페이지로 이동

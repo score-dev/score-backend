@@ -1,6 +1,5 @@
 package com.score.scoredev.domain.user;
 
-import com.score.scoredev.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +15,6 @@ public class UserService {
     @Transactional
     public void saveUserInfo(User user) {
         userRepository.save(user);
-    }
-
-    public User join(boolean marketing, String nickname, Gender gender, String school, int grade, AbilityDegree abilityDegree, UsingPurpose usingPurpose) {
-        saveUserInfo(new UserDto(marketing, nickname, gender, school, grade, abilityDegree, usingPurpose).toEntity());
-        return findUserByNickname(nickname); // 저장된 User 엔티티를 리턴
     }
 
     public User findUserByNickname(String nickname) {
