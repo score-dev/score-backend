@@ -1,12 +1,15 @@
 package com.score.scoredev.domain.user;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "user")
 public class User {
 
@@ -17,7 +20,7 @@ public class User {
     @Column(name = "marketing")  // 마케팅 정보 수신 동의
     private boolean marketing;
 
-    @Column(name = "nickname", length = 20) // 닉네임
+    @Column(name = "nickname", length = 20, unique = true) // 닉네임
     private String nickname;
 
     @Column(name = "gender")  // 성별
@@ -33,14 +36,18 @@ public class User {
     private AbilityDegree abilityDegree;
 
     @Column(name = "using_purpose", unique = false) // 사용 목적
+    @Builder.Default
     private UsingPurpose usingPurpose;
 
     @Column(name = "join_date")
-    private Date joinDate = new Date();
+    private Date joinDate;
 
     @Column(name = "userKey")   // 소셜 로그인 id
+    @Builder.Default
     private String userKey;
 
-    @Column(name = "refresh_token")
+    @Column(name = "refresh_token") // jwt refresh token
+    @Builder.Default
     private String refreshToken;
+
 }
