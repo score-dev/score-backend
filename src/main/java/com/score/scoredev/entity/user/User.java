@@ -1,8 +1,5 @@
 package com.score.scoredev.entity.user;
 
-import com.score.scoredev.entity.user.AbilityDegree;
-import com.score.scoredev.entity.user.Gender;
-import com.score.scoredev.entity.user.UsingPurpose;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,7 +36,6 @@ public class User {
     private AbilityDegree abilityDegree;
 
     @Column(name = "using_purpose", unique = false) // 사용 목적
-    @Builder.Default
     private UsingPurpose usingPurpose;
 
     @Column(name = "join_date")
@@ -47,10 +43,10 @@ public class User {
 
     @Column(name = "userKey")   // 소셜 로그인 id
     @Builder.Default
-    private String userKey;
+    private String userKey = "0";
 
     @Column(name = "refresh_token") // jwt refresh token
     @Builder.Default
-    private String refreshToken;
+    private String refreshToken = "0";
 
 }
