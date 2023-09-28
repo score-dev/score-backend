@@ -1,4 +1,4 @@
-package com.score.scoredev.entity.user;
+package com.score.scoredev.domain.user;
 
 import lombok.RequiredArgsConstructor;
 
