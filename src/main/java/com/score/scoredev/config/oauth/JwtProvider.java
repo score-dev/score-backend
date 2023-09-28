@@ -53,8 +53,8 @@ public class JwtProvider {
     //////////// 백엔드 코드에 있는 모든 'access token'은 소셜 로그인 인증 과정에서 사용되는 access token이 아니라 소셜 로그인 인증 완료 이후 발급하는 자체 jwt 토큰입니다! ////////////
 
     // access token 생성
-    private String createAccessToken(String nickname) {
-        Claims claims = Jwts.claims().setSubject(nickname);
+    private String createAccessToken(String userKey) {
+        Claims claims = Jwts.claims().setSubject(userKey);
         Date presentDate = new Date();
         return Jwts.builder()
                 .setClaims(claims)

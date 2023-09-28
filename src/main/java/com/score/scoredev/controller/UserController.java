@@ -4,6 +4,8 @@ import com.score.scoredev.service.UserService;
 import com.score.scoredev.dto.UserDto;
 import com.score.scoredev.entity.user.User;
 import com.score.scoredev.config.oauth.JwtProvider;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -46,7 +48,7 @@ public class UserController {
     }
 
     // 해당 회원 정보가 이미 db에 존재하는지 여부에 따라 메인 페이지 혹은 온보딩 페이지로 이동
-    private HttpHeaders checkWhetherNewOrNot(String userKey, HttpServletResponse response) {
+    public HttpHeaders checkWhetherNewOrNot(String userKey, HttpServletResponse response) {
         Optional<User> userOption = userService.findUserByUserKey(userKey);
         HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -59,7 +61,7 @@ public class UserController {
                     }
                 },
                 // or else: 존재하지 않는 회원인 경우 -> 회원 정보 입력 페이지로 이동
-                () -> httpHeaders.setLocation(URI.create("http://localhost:8080/user/score/join/#1")));
+                () -> httpHeaders.setLocation(URI.create("http://localhost:8080/user/score/join/1")));
         return httpHeaders;
     }
 }
